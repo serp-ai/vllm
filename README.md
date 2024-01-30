@@ -1,3 +1,6 @@
+This fork if for adding support for sparsetral - [model](https://huggingface.co/serpdotai/sparsetral-16x7B-v1) | [repo](https://github.com/serp-ai/Parameter-Efficient-MoE)
+---
+# Original README
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/vllm-project/vllm/main/docs/source/assets/logos/vllm-logo-text-dark.png">
