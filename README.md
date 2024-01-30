@@ -1,4 +1,4 @@
-This fork if for adding support for sparsetral - [model](https://huggingface.co/serpdotai/sparsetral-16x7B-v1) | [repo](https://github.com/serp-ai/Parameter-Efficient-MoE)
+This fork is for adding support for sparsetral - [model](https://huggingface.co/serpdotai/sparsetral-16x7B-v1) | [repo](https://github.com/serp-ai/Parameter-Efficient-MoE)
 ---
 # Original README
 <p align="center">
