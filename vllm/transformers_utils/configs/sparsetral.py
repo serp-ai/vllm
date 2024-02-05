@@ -110,7 +110,7 @@ class SparsetralConfig(PretrainedConfig):
         num_attention_heads=32,
         num_key_value_heads=8,
         hidden_act="silu",
-        max_position_embeddings=4096 * 32,
+        max_position_embeddings=32768,
         initializer_range=0.02,
         rms_norm_eps=1e-6,
         use_cache=True,
@@ -126,7 +126,7 @@ class SparsetralConfig(PretrainedConfig):
         num_experts=16,
         topk=4,
         output_router_logits=False,
-        adapter_dim=64,
+        adapter_dim=512,
         **kwargs,
     ):
         self.vocab_size = vocab_size
