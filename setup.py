@@ -15,11 +15,16 @@ from torch.utils.cpp_extension import BuildExtension, CUDAExtension, CUDA_HOME, 
 
 ROOT_DIR = os.path.dirname(__file__)
 
+# If you are developing the C++ backend of vLLM, consider building vLLM with
+# `python setup.py develop` since it will give you incremental builds.
+# The downside is that this method is deprecated, see
+# https://github.com/pypa/setuptools/issues/917
+
 MAIN_CUDA_VERSION = "12.1"
 
 # Supported NVIDIA GPU architectures.
 NVIDIA_SUPPORTED_ARCHS = {"7.0", "7.5", "8.0", "8.6", "8.9", "9.0"}
-ROCM_SUPPORTED_ARCHS = {"gfx90a", "gfx942"}
+ROCM_SUPPORTED_ARCHS = {"gfx90a", "gfx942", "gfx1100"}
 # SUPPORTED_ARCHS = NVIDIA_SUPPORTED_ARCHS.union(ROCM_SUPPORTED_ARCHS)
 
 
@@ -338,6 +343,17 @@ vllm_extension_sources = [
 if _is_cuda():
     vllm_extension_sources.append("csrc/quantization/awq/gemm_kernels.cu")
     vllm_extension_sources.append("csrc/custom_all_reduce.cu")
+
+    # Add MoE kernels.
+    ext_modules.append(
+        CUDAExtension(
+            name="vllm._moe_C",
+            sources=glob("csrc/moe/*.cu") + glob("csrc/moe/*.cpp"),
+            extra_compile_args={
+                "cxx": CXX_FLAGS,
+                "nvcc": NVCC_FLAGS,
+            },
+        ))
 
 if not _is_neuron():
     vllm_extension = CUDAExtension(
