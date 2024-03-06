@@ -78,7 +78,7 @@ class ParallelAdapterMLP(nn.Module):
         self.adapter_down = RowParallelLinear(
             self.hidden_size, adapter_dim, bias=False, linear_method=linear_method
         )
-        self.adapter_up = RowParallelLinear(
+        self.adapter_up = MergedColumnParallelLinear(
             adapter_dim, self.hidden_size, bias=False, linear_method=linear_method
         )
         self.adapter_act = nn.GELU()
