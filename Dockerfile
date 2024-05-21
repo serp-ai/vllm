@@ -12,9 +12,6 @@ RUN pip install -r requirements.txt
 COPY requirements-build.txt requirements-build.txt
 RUN pip install -r requirements-build.txt
 
-# cuda arch list used by torch
-ARG torch_cuda_arch_list='7.0 7.5 8.0 8.6 8.9 9.0+PTX'
-ENV TORCH_CUDA_ARCH_LIST=${torch_cuda_arch_list}
 # max jobs used by Ninja to build extensions
 ARG max_jobs=2
 ENV MAX_JOBS=${max_jobs}
